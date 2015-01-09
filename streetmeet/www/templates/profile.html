@@ -1,0 +1,52 @@
+<ion-view title="Profile">
+    <ion-content class="has-header">
+       <div class="FbEvents">
+        <div class="list card">
+            <div class="item">
+                <h2>{{user.name}}</h2>
+                <p>{{user.city}}</p>
+            </div>
+            <div class="item item-body">
+                <img src="http://graph.facebook.com/{{user.id}}/picture?width=270&height=270"/>
+            </div>
+            <h4>{{user.bio}} </h4>
+        </div>
+
+        <div class="list card">
+            <h2>Facebook</h2>
+            <div ng-repeat="event in user.events.data ">
+               <h3> {{event.name}} </h3>
+               <p> {{event.start_time}} </p>
+            </div>
+        </div>
+
+   <button class="button button-block button-positive" ng-click="meetupLogin()">
+                  Login with Meetup
+    </button>
+
+    <button class="button button-block button-positive" ng-click="meetupReq()">
+                  Get Meetup data
+    </button>
+
+        <div class="list card">
+            <h2>Meetup</h2>
+            <div ng-repeat="meetupEvent in meetupEvents ">
+               <h3> {{meetupEvent.name}} </h3>
+                {{ addMarker(meetupEvent.venue.lat, meetupEvent.venue.lon, meetupEvent); }}
+              <!-- <div ng-bind-html="meetupEvent.description"></div> -->
+              <a href="{{meetupEvent.event_url}}" target="_blank">More information</a>
+
+              <h4> {{meetupEvent.venue.city }}</h4>
+            </div>
+        </div>
+    </div>
+
+     <div id="map" data-tap-disabled="true"></div>
+
+
+   
+    <!-- <pre>{{meetupEvents}}</pre> -->
+
+
+    </ion-content>
+</ion-view>
